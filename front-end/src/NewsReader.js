@@ -4,6 +4,8 @@ import { Articles } from './Articles';
 import { useState, useEffect } from 'react';
 import { exampleQuery ,exampleData } from './data';
 import { SavedQueries } from './SavedQueries';
+const urlQueries = "/queries"
+
 
 const urlNews="/news"
 export function NewsReader() {
@@ -15,6 +17,36 @@ export function NewsReader() {
   useEffect(() => {
     getNews(query);
   }, [query])
+
+  async function getQueryList() {
+    try {
+      const response = await fetch(urlQueries);
+        if (response.ok) {
+        const data = await response.json();
+        console.log("savedQueries has been retrieved: ");
+        setSavedQueries(data);
+      }
+      } catch (error) {
+      console.error('Error fetching news:', error);
+    }
+  } 
+  
+  async function saveQueryList(savedQueries) {
+    try {
+      const response = await fetch(urlQueries, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(savedQueries),
+      });
+  
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      console.log("savedQueries array has been persisted:");
+    } catch (error) {
+      console.error('Error fetching news:', error);
+    }
+  }
 
   function onSavedQuerySelect(selectedQuery) {
  setQueryFormObject(selectedQuery);
@@ -30,7 +62,8 @@ export function NewsReader() {
       }
     }
     console.log(JSON.stringify(newSavedQueries));
-    setSavedQueries(newSavedQueries);    
+    saveQueryList(newSavedQueries);
+    setSavedQueries(newSavedQueries);    //save queries
     setQuery(queryObject);
   }
 
@@ -55,6 +88,9 @@ export function NewsReader() {
       setData({});
     }
   }
+
+  useEffect(() => {getQueryList();}, [])
+
 
   return (
     <div>
