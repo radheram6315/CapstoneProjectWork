@@ -52,12 +52,32 @@ export function NewsReader() {
     }
   }
 
-  function onSavedQuerySelect(selectedQuery) {
+function onSavedQuerySelect(selectedQuery) {
  setQueryFormObject(selectedQuery);
  setQuery(selectedQuery);
 }
 
+function currentUserMatches(user) {
+  if (currentUser) {
+    if (currentUser.user) {
+      if (currentUser.user === user) {
+        return true;
+      }
+    }
+  }
+  return false;
+}
   function onFormSubmit(queryObject) {
+    //if user is not logged in don't let them save queries
+    if (currentUser === null){
+      alert("Log in if you want to create new queries!")
+      return;
+    }
+    //if it is guest user you can only save 3 queries
+    if (savedQueries.length >= 3 && currentUserMatches("guest")) {
+      alert("guest users cannot submit new queries once saved query count is 3 or greater!")
+      return;
+      }
     let newSavedQueries = [];
     newSavedQueries.push(queryObject);
     for (let query of savedQueries) {
@@ -133,6 +153,7 @@ export function NewsReader() {
           <div className="box">
             <span className='title'>Query Form</span>
             <QueryForm
+              currentUser={currentUser}
               setFormObject={setQueryFormObject}
               formObject={queryFormObject}
               submitToParent={onFormSubmit} />
