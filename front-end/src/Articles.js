@@ -1,10 +1,15 @@
 export function Articles(params) {
     let articles = (params.data.articles)?params.data.articles:[];
     let queryName = (params.query.queryName)?params.query.queryName:"na";
+    let queryDetails = (params.query.q)?params.query.q:"na";
     let articleCount = (params.data.totalResults)?params.data.totalResults:0;
     return (
       <div>
-        Query: {queryName}
+        Query: {queryName} 
+        <br/>
+        <button type="button" class = "button" data-toggle="collapse" data-target="#querydetails">click for queryDetails</button>
+        <div class="collapse" id="querydetails"> {queryDetails}
+        </div>
         <br/>Count: {articleCount}
         <ol >{
             articles.map((item, idx) => {
@@ -13,8 +18,7 @@ export function Articles(params) {
                   if(item.title === "[Removed]"){
                     return (<li key={idx} >Was Removed</li>);
                   }
-                  let trimTitle = item.title.substring(0,30);
-                  return (<li key={idx}>{trimTitle}<a href={item.url} target="_blank" rel="noreferrer" >&nbsp;Link</a></li>);    
+                  return (<li key={idx}>{item.title}<a href={item.url} target="_blank" rel="noreferrer" >&nbsp;{item.url}</a></li>);    
                 }else{
                   return (<li key={idx}>No Title</li>);
                 }

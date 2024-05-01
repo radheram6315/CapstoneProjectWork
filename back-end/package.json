@@ -6,7 +6,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "set API_KEY=6c4acb06a20942c6ac801600e749705c node server.js"
   },
   "keywords": [],
   "author": "",
