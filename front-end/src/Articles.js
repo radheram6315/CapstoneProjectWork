@@ -7,7 +7,7 @@ export function Articles(params) {
       <div>
         Query: {queryName} 
         <br/>
-        <button type="button" class = "button" data-toggle="collapse" data-target="#querydetails">click for queryDetails</button>
+        <button type="button" class = "details" data-toggle="collapse" data-target="#querydetails">click for queryDetails</button>
         <div class="collapse" id="querydetails"> {queryDetails}
         </div>
         <br/>Count: {articleCount}

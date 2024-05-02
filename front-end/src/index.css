@@ -7,8 +7,11 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-header p{
+header h1{
   font-size: large;
+  text-align: center;
+  background-color: #dcffa5  ;
+  color: rgb(238, 20, 20);
 }
 
 ol{
@@ -55,12 +58,12 @@ code {
 .title{
   font-weight: bold;
   display: block;
-  background-color: #A5C9FF  ;
+  background-color: #031d44  ;
   color: white;
   font-size: small;
 }
 
-.button {
+.details {
   background-color: #04AA6D; /* Green */
   border: none;
   color: white;

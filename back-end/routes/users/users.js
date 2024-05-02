@@ -26,10 +26,10 @@ router.post('/authenticate', async (req, res) => {
         if(result.password === loginCredentials.password){
           res.status(200).send("user passed authentication!")
         }else{
-          res.status(401).send("unauthorized: bad password");
+          res.status(401).send("unauthorized: invalid credentials");
         }
       }else{
-        res.status(401).send("unauthorized: user not found");
+        res.status(401).send("unauthorized: invalid credentials");
       } 
     } catch (err) {
       res.status(400).json({ error: err.message });

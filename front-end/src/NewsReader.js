@@ -143,7 +143,11 @@ function currentUserMatches(user) {
 
 
   return (
-    <div>      
+    <div>   
+      <img 
+          height={200}
+          src="./newspaper.jpeg"
+          alt="News at your finger tip"/>   
       <LoginForm login={login} 
         credentials={credentials} 
         currentUser={currentUser} 
