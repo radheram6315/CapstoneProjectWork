@@ -141,6 +141,18 @@ function currentUserMatches(user) {
     }
   }
 
+  function onResetClick() {
+    
+    let emptyList = [];
+    let result = window.confirm(
+      "Are you sure you want to reset the saved queries?"
+    );
+    if (result) {
+      saveQueryList(emptyList);
+      setSavedQueries(emptyList)
+    }
+  };
+
 
   return (
     <div>   
@@ -152,9 +164,10 @@ function currentUserMatches(user) {
         credentials={credentials} 
         currentUser={currentUser} 
         setCredentials={setCredentials} />
+        
       <div >
         <section className="parent" >
-          <div className="box">
+          <div className={`box ${(currentUser) ? "visible" : "hidden"}`}>
             <span className='title'>Query Form</span>
             <QueryForm
               currentUser={currentUser}
@@ -166,7 +179,13 @@ function currentUserMatches(user) {
           <span className='title'>Saved Queries</span>
           <SavedQueries savedQueries={savedQueries} 
           selectedQueryName={query.queryName}
-          onQuerySelect={onSavedQuerySelect} />
+          onQuerySelect={onSavedQuerySelect} 
+          />
+          <span className={`box ${(currentUser) ? "visible" : "hidden"}`} style={{ display: "block" }}>
+          <button className="reset-button" type="button" onClick={onResetClick}>
+            Reset Saved Queries
+          </button>
+          </span>
           </div>
           <div className="box">
             <span className='title'>Articles List</span>
@@ -175,5 +194,6 @@ function currentUserMatches(user) {
         </section>
       </div>
     </div>
+    
   )
 }

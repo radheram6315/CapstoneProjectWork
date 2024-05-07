@@ -14,7 +14,6 @@ export function SavedQueries(params) {
         >{trimTitle + ": \"" + item.q + "\""} </li>);
       })
     } 
-  
     return (
         <div>
           <ul >{

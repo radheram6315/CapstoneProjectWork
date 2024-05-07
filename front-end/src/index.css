@@ -93,3 +93,7 @@ code {
 .moreVisible{
   display:block;
 }
+
+.reset-button{
+  background-color: #04AA6D;
+}
