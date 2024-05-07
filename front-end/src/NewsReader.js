@@ -189,7 +189,7 @@ function currentUserMatches(user) {
           </div>
           <div className="box">
             <span className='title'>Articles List</span>
-            <Articles query={query} data={data} />
+            <Articles query={query} data={data} user={currentUser} />
           </div>
         </section>
       </div>
